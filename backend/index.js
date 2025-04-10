@@ -35,7 +35,22 @@ app.post('/books', async (req, res)=>{
             message: err.message
         });
     }
-});
+}); 
+
+//route to get all books from db
+app.get('/books', async(req, res) => {
+    try{
+        const books = await Book.find({});
+        return res.status(200).json({
+            count : books.length,
+            data: books
+        });
+    }catch(err){
+        console.log(err.message);
+        res.status(500).send({message: err.message});
+    }
+})
+
 
 mongoose.connect(mongoDBURL).then(()=>{
     console.log('app connected to database');
