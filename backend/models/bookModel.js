@@ -6,7 +6,7 @@ const bookSchema = mongoose.Schema(
             type: String,
             required: true, 
         },
-        auther: {
+        author: {
             type: String,
             required: true
         },
@@ -20,4 +20,4 @@ const bookSchema = mongoose.Schema(
     }
 )
 
-export const Book = mongoose.model('', bookSchema); 
+export const Book = mongoose.model('book', bookSchema); 
