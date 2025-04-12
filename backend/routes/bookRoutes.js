@@ -62,8 +62,8 @@ router.put('/:id', async(req, res)=>{
             return res.status(404).send({message: 'send all required fields: title, author, publishYear'});
         }
         const {id} = req.params;
-        //const result = await Book.findByIdAndUpdate(id, req.body);
-        const result = await Book.updateOne({id}, req.body);
+        const result = await Book.findByIdAndUpdate(id, req.body);
+        //const result = await Book.updateOne({id}, req.body);
 
 
         if(!result){
@@ -82,8 +82,8 @@ router.put('/:id', async(req, res)=>{
 router.delete('/:id', async(req, res)=>{
     try{
         const {id} = req.params;
-        //const delBook = await Book.findByIdAndDelete(id);
-        const delBook = await Book.deleteOne({id});
+        const delBook = await Book.findByIdAndDelete(id);
+        //const delBook = await Book.deleteOne({id});
         if(!delBook){
             return res.status(404).send({message: 'book not found'});
         }
