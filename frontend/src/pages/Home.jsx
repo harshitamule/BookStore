@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import Spinner from '../components/spinner';
+import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
 import {AiOutlineEdit} from 'react-icons/ai';
 import {BsInfoCircle} from 'react-icons/bs';
