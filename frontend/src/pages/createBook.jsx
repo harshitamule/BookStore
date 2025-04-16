@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
-import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useSnackbar } from 'notistack'
 
 const CreateBook = () => {
   const [title, setTitle] = useState('');
@@ -11,6 +11,7 @@ const CreateBook = () => {
   const [publishYear, setPublishYear] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const {enqueueSnackbar} = useSnackbar();
 
   const handleSavedBook = () => {
     const data = {
@@ -22,11 +23,13 @@ const CreateBook = () => {
     axios.post('http://localhost:5000/books', data)
     .then(() => {
       setLoading(false);
+      enqueueSnackbar('Book created Successfully', {variant:'success'});
       navigate('/');
     })
     .catch((err)=>{
       setLoading(false);
-      alert('An error happened, check the console');
+      //alert('An error happened, check the console');
+      enqueueSnackbar('error', {variant : 'error'});
       console.log(err);
     })
   }

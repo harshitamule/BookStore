@@ -4,6 +4,8 @@ import Spinner from '../components/Spinner'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useSnackbar } from 'notistack'
+
 
 const EditBook = () => {
   const [title, setTitle] = useState('');
@@ -11,6 +13,7 @@ const EditBook = () => {
   const [publishYear, setPublishYear] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const {enqueueSnackbar} = useSnackbar();
 
   const {id} = useParams();
 
@@ -25,7 +28,7 @@ const EditBook = () => {
     })
     .catch((err)=>{
       setLoading(false);
-      alert('An error happened');
+      //alert('An error happened');
       console.log(err);
     })
   }, [])
@@ -40,11 +43,15 @@ const EditBook = () => {
     axios.put(`http://localhost:5000/books/${id}`, data)
     .then(() => {
       setLoading(false);
+      enqueueSnackbar('Book edited successfully', {variant:'success'});
+
       navigate('/');
     })
     .catch((err)=>{
       setLoading(false);
-      alert('An error happened, check the console');
+      //alert('An error happened, check the console');
+      enqueueSnackbar('error', {variant:'error'});
+
       console.log(err);
     })
   }
