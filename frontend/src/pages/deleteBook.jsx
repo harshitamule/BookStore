@@ -22,9 +22,7 @@ const DeleteBook = () => {
       alert('An error happened, check the console');
       console.log(err);
     })
-  }
-
-  
+  }  
   return (
     <div className='p-4'>
       <BackButton/>
